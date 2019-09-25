@@ -5,15 +5,16 @@
   "author": "masuhajime",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start",
-    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --fix --ext .ts,.js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.1.6",
     "@nuxtjs/axios": "^5.3.6",
+    "dayjs": "^1.8.16",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

@@ -1,28 +1,39 @@
 <template>
   <div>
-    {{ message }}
+    {{ fullName }}
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropOptions } from 'vue'
 
 interface User {
   name: String;
 }
 
 export default Vue.extend({
+  name: 'YourComponent',
+
   props: {
+    firstName: {
+      type: String,
+      required: true
+    },
     user: {
       type: Object,
       required: true
     } as PropOptions<User>
   },
-  data () {
-    const message: string = 'This is a message'
 
+  data () {
     return {
-      message
+      message: 'This is a message'
+    }
+  },
+
+  computed: {
+    fullName (): string {
+      return `${this.firstName} ${this.user.name}`
     }
   }
 })
