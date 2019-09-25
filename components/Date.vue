@@ -11,7 +11,7 @@
       </span>
     </div>
     <div class="content">
-      シフト
+      -
     </div>
   </div>
 </template>

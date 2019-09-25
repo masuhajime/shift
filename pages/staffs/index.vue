@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <navigation />
-      <calender />
+      staff
     </div>
   </div>
 </template>

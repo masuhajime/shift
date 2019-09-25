@@ -2,7 +2,14 @@
   <div class="container">
     <div>
       <navigation />
-      <calender />
+      settings
+      <button @click="onClick">
+        click
+      </button>
+      <div v-for="post in posts" :key="post.id">
+        {{ post }}
+      </div>
+      <p>{{counter }}</p>
     </div>
   </div>
 </template>
@@ -12,6 +19,7 @@ import Vue from 'vue'
 import Your from '~/components/Your.vue'
 import Calender from '~/components/Calender.vue'
 import Navigation from '~/components/Navigation.vue'
+import { feedStore, countStore } from '~/store'
 
 export default Vue.extend({
   components: {
@@ -24,6 +32,29 @@ export default Vue.extend({
       user: {
         name: 'NAME1'
       }
+    }
+  },
+  computed: {
+    counter: () => {
+      return countStore.count// exampleStore.count;
+    },
+    posts () {
+      return feedStore.posts
+    }
+  },
+  created () {
+    console.log('created()')
+
+    // feedStore.loadPosts()
+  },
+  mounted () {
+    console.log('mounted()')
+    //feedStore.loadPosts()
+  },
+  methods: {
+    onClick (event) {
+      console.log("onClick");
+      countStore.add()
     }
   }
 })
