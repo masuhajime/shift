@@ -26,7 +26,7 @@
   padding: 0;
 }
 .thin {
-  background: #f0f0f0;
+  background: #e8e8e8;
 }
 .header {
   flex: 24px;
@@ -36,7 +36,7 @@
   font-weight: bold;
 }
 .thin .header {
-  background: #f0f0f0;
+  background: #e8e8e8;
 }
 .header_holiday {
   color: red;
