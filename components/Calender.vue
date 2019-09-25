@@ -6,7 +6,7 @@
 
     <div :class="$style.container">
       <template v-for="(day, index) in days">
-        <date :key="index" :day="day" />
+        <date :key="index" :day="day.day" :thin="day.thin" />
       </template>
     </div>
   </div>
@@ -25,6 +25,11 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import Date from './Date.vue'
 
+interface Day {
+  day: dayjs.Dayjs;
+  thin?: boolean;
+}
+
 export default Vue.extend({
   components: {
     Date
@@ -34,22 +39,32 @@ export default Vue.extend({
   },
 
   data () {
-    const now = dayjs('2019-09')
+    const now = dayjs('2019-06')
     const daysInMonth = now.daysInMonth()
 
-    const days = []
+    const days: Day[] = []
     for (let i = 1; i <= daysInMonth; i++) {
-      days.push(dayjs().year(now.year()).month(now.month()).date(i))
+      days.push({
+        day: dayjs().year(now.year()).month(now.month()).date(i)
+      })
     }
 
     // 日曜日を左端に合わせる為に前後の日時を追加する
-    const firstDay = days[0];
+    const firstDay = days[0].day
     for (let i = 0; i < firstDay.day(); i++) {
-      days.unshift(firstDay.clone().add(-(i + 1), 'day'));
+      days.unshift(
+        {
+          day: firstDay.clone().add(-(i + 1), 'day'),
+          thin: true
+        }
+      )
     }
-    const lastDay = days[days.length - 1];
+    const lastDay = days[days.length - 1].day
     for (let i = 0; i < (6 - lastDay.day()); i++) {
-      days.push(lastDay.clone().add(i + 1, 'day'));
+      days.push({
+        day: lastDay.clone().add(i + 1, 'day'),
+        thin: true
+      })
     }
 
     return {

@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    :class="{ thin:thin }"
+  >
     <div class="header">
       <span
-      v-bind:class="{ header_holiday:isHoliday }"
+        :class="{ header_holiday:isHoliday }"
       >
-      {{month}}/{{ day.date() }}({{ dayOf }})
+        {{ month }}/{{ day.date() }}({{ dayOf }})
       </span>
     </div>
     <div class="content">
@@ -22,12 +25,18 @@
   margin: 1px;
   padding: 0;
 }
+.thin {
+  background: #f0f0f0;
+}
 .header {
   flex: 24px;
   background-color: #f8f8f8;
   padding: 8px;
   margin: 0;
   font-weight: bold;
+}
+.thin .header {
+  background: #f0f0f0;
 }
 .header_holiday {
   color: red;
@@ -51,6 +60,10 @@ export default Vue.extend({
     day: {
       type: dayjs,
       required: true
+    },
+    thin: {
+      default: false,
+      required: false
     }
   },
 
@@ -60,15 +73,15 @@ export default Vue.extend({
   },
 
   computed: {
-    month() {
-      return this.day.month() + 1;
+    month () {
+      return this.day.month() + 1
     },
-    dayOf() {
-      return days[this.day.day()];
+    dayOf () {
+      return days[this.day.day()]
     },
-    isHoliday() {
-      const day = this.day.day();
-      return day === 0 || day === 6;
+    isHoliday () {
+      const day = this.day.day()
+      return day === 0 || day === 6
     }
   }
 })
