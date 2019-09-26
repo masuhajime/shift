@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <calender />
+    group
   </div>
 </template>
 
@@ -11,6 +11,7 @@ import Calender from '~/components/Calender.vue'
 import Navigation from '~/components/Navigation.vue'
 
 export default Vue.extend({
+  layout: 'staff',
   components: {
     Your,
     Calender,
@@ -28,12 +29,10 @@ export default Vue.extend({
 
 <style scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  flex-direction: column;
+  margin: 0 auto;
   background-color: #e0e0e0;
+  min-height: 100vh;
 }
 </style>

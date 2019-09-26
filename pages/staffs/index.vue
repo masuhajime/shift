@@ -1,29 +1,36 @@
 <template>
   <div class="container">
-    <div>
-      <navigation />
-      staff
-    </div>
+    <section>
+      <button v-on:click="addStaff('nameaaa')">スタッフの追加</button>
+    </section>
+    <section>
+      <ul>
+        <li v-for="staff in staffs" :key="staff.id">
+          {{ staff.name }}
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-import Your from '~/components/Your.vue'
-import Calender from '~/components/Calender.vue'
 import Navigation from '~/components/Navigation.vue'
+import { staffStore } from '~/store'
 
 export default Vue.extend({
+  layout: 'staff',
   components: {
-    Your,
-    Calender,
     Navigation
   },
-  data () {
-    return {
-      user: {
-        name: 'NAME1'
-      }
+  computed: {
+    staffs: () => {
+      return staffStore.staffs
+    }
+  },
+  methods: {
+    addStaff: (name: string) => {
+      staffStore.addStaff(name)
     }
   }
 })
@@ -32,11 +39,7 @@ export default Vue.extend({
 <style scoped>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   background-color: #e0e0e0;
+  min-height: 100vh;
 }
 </style>

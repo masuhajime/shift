@@ -25,13 +25,18 @@ nav {
 }
 nav > button {
     margin-left: 8px;
-    padding: 8px 16px;
+    padding: 0;
     background-color: #f0f0f0;
-    color: #333;
     border: 1px solid #ccc;
     border-radius: 3px;
     &:hover {
-        background-color: #e8e8e8;
+      background-color: #e8e8e8;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      padding: 8px 16px;
     }
 }
 </style>
