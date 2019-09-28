@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <section>
-      <button v-on:click="addStaff('nameaaa')">スタッフの追加</button>
+      <AddStaff @add="addStaff" />
     </section>
     <section>
+      <h2>スタッフ一覧</h2>
       <ul>
         <li v-for="staff in staffs" :key="staff.id">
           {{ staff.name }}
@@ -16,12 +17,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import Navigation from '~/components/Navigation.vue'
+import AddStaff, { AddStaffEvent } from '~/components/forms/FormAddStaff.vue'
 import { staffStore } from '~/store'
 
 export default Vue.extend({
   layout: 'staff',
   components: {
-    Navigation
+    Navigation,
+    AddStaff
   },
   computed: {
     staffs: () => {
@@ -29,8 +32,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    addStaff: (name: string) => {
-      staffStore.addStaff(name)
+    addStaff: (event: AddStaffEvent) => {
+      staffStore.addStaff(event.name)
     }
   }
 })

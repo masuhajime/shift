@@ -24,9 +24,7 @@ interface IStaffStore {
 
 @Module({ stateFactory: true, namespaced: true, name: 'staff' })
 export default class Staff extends VuexModule implements IStaffStore {
-  staffs: Array<IStaff> = [
-    { id: '1', name: 'a' }
-  ];
+  staffs: Array<IStaff> = [];
   shiftPatterns: Array<IShiftPattern> = [];
   groups: Array<IStaffGroup> = [];
 

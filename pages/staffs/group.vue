@@ -1,27 +1,41 @@
 <template>
   <div class="container">
-    group
+    <section>
+      <AddGroup @add="addGroup" />
+    </section>
+    <section>
+      <h2>グループ一覧</h2>
+      <ul>
+        <li v-for="group in groups" :key="group.id">
+          {{ group.name }}
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Your from '~/components/Your.vue'
 import Calender from '~/components/Calender.vue'
 import Navigation from '~/components/Navigation.vue'
+import AddGroup, { AddGroupEvent } from '~/components/forms/FormAddGroup.vue'
+import { staffStore } from '~/store'
 
 export default Vue.extend({
   layout: 'staff',
   components: {
-    Your,
-    Calender,
-    Navigation
+    Navigation,
+    AddGroup
   },
-  data () {
-    return {
-      user: {
-        name: 'NAME1'
-      }
+  computed: {
+    groups: () => {
+      return staffStore.groups
+    }
+  },
+  methods: {
+    addGroup: (event: AddGroupEvent) => {
+      staffStore.addGroup(event.name)
     }
   }
 })
