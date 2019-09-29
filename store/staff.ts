@@ -49,4 +49,12 @@ export default class Staff extends VuexModule implements IStaffStore {
       return staff.id !== id
     })
   }
+
+  get findGroupById() {
+    return (groupId: string) => {
+      return this.groups.find((group: IStaffGroup) => {
+        return group.id === groupId
+      })
+    }
+  }
 }

@@ -7,7 +7,10 @@
       <h2>グループ一覧</h2>
       <ul>
         <li v-for="group in groups" :key="group.id">
+          <nuxt-link :to="'/groups/' +group.id">
           {{ group.name }}
+          </nuxt-link>
+           : {{ group.id }}
         </li>
       </ul>
     </section>
